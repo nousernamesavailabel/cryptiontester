@@ -51,8 +51,14 @@ def fpe_decrypt(encrypted_string, encryption_key):
 
 def encode_text():
     input_text = input_entry.get()
-    encrypted_text = fpe_encrypt(input_text, encryption_key.get().encode('utf-8'))
-    output_text.set(encrypted_text)
+    your_callsign = callsign_entry.get()
+    your_callsign = your_callsign.upper()
+    distant_callsign = distant_callsign_entry.get()
+    distant_callsign = distant_callsign.upper()
+    prepared_text = your_callsign + input_text
+    encrypted_text = fpe_encrypt(prepared_text, encryption_key.get().encode('utf-8'))
+    combined_text = (your_callsign + ":" + distant_callsign + " " + encrypted_text)
+    output_text.set(combined_text)
 
 def decode_text():
     input_text = input_entry.get()
@@ -66,14 +72,27 @@ def clear_inputs():
 
 # Create the main window
 root = tk.Tk()
-root.title("Encoder/Decoder")
+root.title("Cryption")
+root.geometry("225x300")
 
 # Create and place widgets
-input_label = tk.Label(root, text="Enter text:")
+input_label = tk.Label(root, text="Enter full 8 digit grid:")
 input_label.pack()
 
 input_entry = tk.Entry(root)
 input_entry.pack()
+
+callsign_label=tk.Label(root, text="Your Callsign:")
+callsign_label.pack()
+
+callsign_entry = tk.Entry(root)
+callsign_entry.pack()
+
+distant_callsign_label = tk.Label(root, text="Distant Callsign:")
+distant_callsign_label.pack()
+
+distant_callsign_entry= tk.Entry(root)
+distant_callsign_entry.pack()
 
 key_label = tk.Label(root, text="Enter encryption key:")
 key_label.pack()
@@ -94,7 +113,7 @@ output_label = tk.Label(root, text="Output:")
 output_label.pack()
 
 output_text = tk.StringVar()
-output_entry = tk.Entry(root, textvariable=output_text)
+output_entry = tk.Entry(root, textvariable=output_text, width=200, justify='center')
 output_entry.pack()
 
 # Run the application
