@@ -100,13 +100,13 @@ key_label.pack()
 encryption_key = tk.Entry(root)
 encryption_key.pack()
 
-encode_button = tk.Button(root, text="Encode", command=encode_text)
+encode_button = tk.Button(root, text="Encode", command=encode_text, width=150)
 encode_button.pack()
 
-decode_button = tk.Button(root, text="Decode", command=decode_text)
+decode_button = tk.Button(root, text="Decode", command=decode_text, width=150)
 decode_button.pack()
 
-clear_button = tk.Button(root, text="Clear Inputs", command=clear_inputs)
+clear_button = tk.Button(root, text="Clear Inputs", command=clear_inputs, width=150)
 clear_button.pack()
 
 output_label = tk.Label(root, text="Output:")
